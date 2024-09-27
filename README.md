@@ -1,11 +1,10 @@
 # cad2024 電腦輔助設計與實習作業網站
 
-template 網站: https://mde.tw/cad2024_hw (請完成設定後刪除這一行)
 
-使用者: 請填入學號
+使用者: 41223234
 
-作業網站: 請填入此網站的網址
+作業網站: [https://expert-broccoli-q7qg5g44pqqp3xwv5-8080.app.github.dev/imageuploadform]
 
-作業倉儲: 請填入此網站的倉儲連結
+作業倉儲: [https://mdecad2024.github.io/hw-41223234/content/HW1.html]
 
 其他資訊: 請自行填入其他相關資料
