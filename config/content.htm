@@ -74,7 +74,7 @@ http_server.serve_forever()</pre>
 <p>
 <script src="/static/jsc3d.js" type="text/javascript"></script>
 </p>
-<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <!-- 可以添加更多的 canvas --></div>
+<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv3" style="border: 1px solid;" width="400"></canvas><canvas height="300" id="cv4" style="border: 1px solid;" width="400"></canvas><canvas height="300" id="cv5" style="border: 1px solid;" width="400"></canvas><canvas height="300" id="cv6" style="border: 1px solid;" width="400"></canvas> <!-- 可以添加更多的 canvas --></div>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
 <option>Flat</option>
 <option>Point</option>
@@ -131,11 +131,21 @@ function openByUrl(){
     // 可以添加更多的 STL URL
     readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
     readSTLfile(opt, 'cv2'); // 第二個 canvas
+    readSTLfile(opt, 'cv3'); // 第三個 canvas
+    readSTLfile(opt, 'cv4'); // 第四個 canvas
+    readSTLfile(opt, 'cv5'); // 第五個 canvas
+    readSTLfile(opt, 'cv6'); // 第六個 canvas
 }
 
 function openByGet(){
     var urls = [
         "https://s104.cycu.org/~41223234/bearingblockA.stl",
+        "https://s104.cycu.org/~41223234/BearigblockB.stl",
+        "https://s104.cycu.org/~41223234/Columnbase.stl",
+         "https://s104.cycu.org/~41223234/Dovetailbracket.stl",
+        "https://s104.cycu.org/~41223234/Dovetailstop.stl",
+        "https://s104.cycu.org/~41223234/Glandblank.stl",
+
     ];
     var opt = getOptions();
     urls.forEach((url, index) => {
@@ -146,8 +156,7 @@ function openByGet(){
 
 openByGet();
 </script>
-</p>
-<h1>HW2</h1>
+</p><h1>HW2</h1>
 <p>Homework 2 (10%):</p>
 <p style="padding-left: 30px;">利用 Solvespace 與 NX 建立 <a href="https://mde.tw/cad2024/content/BonW.html">Balance on Wheels</a> 組立件</p>
 <hr/>
