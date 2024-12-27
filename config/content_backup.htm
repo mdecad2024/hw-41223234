@@ -394,10 +394,14 @@ function openByUrl(){
     opt.SceneUrl = url;
     // 可以添加更多的 STL URL
     readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
+   readSTLfile(opt, 'cv2'); // 第二個 canvas
+    readSTLfile(opt, 'cv3'); // 第三個 canvas
 }
 
 function openByGet(){
     var urls = [
+        "https://s104.cycu.org/~41223234/kicker_assembly1.stl",
+        "https://s104.cycu.org/~41223234/kicker_assembly2.stl",
         "https://s104.cycu.org/~41223234/kicker_assembly.stl",
 
     ];
