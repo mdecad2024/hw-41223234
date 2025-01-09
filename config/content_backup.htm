@@ -416,7 +416,8 @@ openByGet();
 </script>
 <a href="/downloads/kicker_assembly.7z"></a></p>
 <p><span>所完成的零件與組立件檔案下載</span></p>
-<p><span style="color: #0000ff;"><a href="/downloads/41223234_w16_exam1.7z" style="color: #0000ff;">41223234_w16_exam1</a></span></p><h1>HW3</h1>
+<p><span style="color: #0000ff;"><a href="/downloads/41223234_w16_exam1.7z" style="color: #0000ff;">41223234_w16_exam1</a></span></p>
+<h1>HW3</h1>
 <p>Homework 3 (20%):</p>
 <p style="padding-left: 30px;">建立 <a href="https://mde.tw/cad2024/content/BonW.html">Balance on Wheels</a> 控制系統設計模擬場景</p>
 <p style="padding-left: 30px;"><a href="https://github.com/mdecycu/Balance_On_Wheels">https://github.com/mdecycu/Balance_On_Wheels</a></p>
@@ -427,8 +428,90 @@ openByGet();
 <h2>HW3_Exam</h2>
 <h3>w16_exam2</h3>
 <p>零件與組立件考試題目以 NX 繪圖操作過程影片如下:<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="450" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/aYRGqqzjy_o" title="國立虎尾科技大學機械設計工程系 - 電腦輔助設計與實習 - w16_exam2: 41223234" width="800"></iframe></p>
+<p>
+<script src="/static/jsc3d.js" type="text/javascript"></script>
+</p>
+<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas><canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv3" style="border: 1px solid;" width="400"></canvas> <!-- 可以添加更多的 canvas --></div>
+<div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
+<option>Flat</option>
+<option>Point</option>
+<option>Wireframe</option>
+<option>Smooth</option>
+</select>Definition:<select id="defini" onchange="changeOption('Definition',this.value)">
+<option>Standard</option>
+<option>low</option>
+<option>high</option>
+</select></div>
+<p>
+<script type="text/javascript">
+var viewers = [];
+
+function getOptions(){
+    var mc = document.getElementById("mdlClr").value;
+    var bc1 = document.getElementById("bckClr1").value;
+    var bc2 = document.getElementById("bckClr2").value;
+    var ren = document.getElementById("render").value;
+    var def = document.getElementById("defini").value;
+    return {ModelColor: mc, BackgroundColor1: bc1, BackgroundColor2: bc2, RenderMode: ren, Definition: def};
+}
+
+function readSTLfile(opt, canvasId){
+    var canvas = document.getElementById(canvasId);
+    var viewer = new JSC3D.Viewer(canvas);
+    viewer.setParameter('SceneUrl', opt.SceneUrl);
+    viewer.setParameter('InitRotationX', 0);
+    viewer.setParameter('InitRotationY', 0);
+    viewer.setParameter('InitRotationZ', 0);
+    viewer.setParameter('ModelColor', opt.ModelColor);
+    viewer.setParameter('BackgroundColor1', opt.BackgroundColor1);
+    viewer.setParameter('BackgroundColor2', opt.BackgroundColor2);
+    viewer.setParameter('RenderMode', opt.RenderMode);
+    viewer.setParameter('Definition', opt.Definition);
+    viewer.init();
+    viewer.update();
+    viewers.push(viewer); // 保存 viewer 實例
+}
+
+function changeOption(strOpt,strValue){
+    console.log("change " + strOpt + " to " + strValue);
+    viewers.forEach(viewer => {
+        viewer.setParameter(strOpt, strValue);
+        viewer.init();
+        viewer.update();
+    });
+}
+
+function openByUrl(){
+    var url = document.getElementById("url").value;
+    var opt = getOptions();
+    opt.SceneUrl = url;
+    // 可以添加更多的 STL URL
+    readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
+   readSTLfile(opt, 'cv2'); // 第二個 canvas
+    readSTLfile(opt, 'cv3'); // 第三個 canvas
+}
+
+function openByGet(){
+    var urls = [
+        "https://s104.cycu.org/~41223234/nxkicker_assembly1.stl",
+        "https://s104.cycu.org/~41223234/nxkicker_assembly2.stl",
+        "https://s104.cycu.org/~41223234/nxkicker_assembly.stl",
+
+    ];
+    var opt = getOptions();
+    urls.forEach((url, index) => {
+        opt.SceneUrl = url;
+        readSTLfile(opt, 'cv' + (index + 1)); // 動態生成 canvas ID
+    });
+}
+
+openByGet();
+</script>
+<a href="/downloads/kicker_assembly.7z"></a></p>
+<p style="padding-left: 30px;"></p>
 <p>所完成的零件與組立件檔案下載</p>
-<p><span style="color: #0000ff;"><a href="/downloads/41223234_w16_exam2.7z" style="color: #0000ff;">41223234_w16_exam2.7z</a></span></p><h1>HW4</h1>
+<p><span style="color: #0000ff;"><a href="/downloads/41223234_w16_exam2.7z" style="color: #0000ff;">41223234_w16_exam2.7z</a></span></p>
+<h1>HW4</h1>
 <p>Homework 4 (20%):</p>
 <p style="padding-left: 30px;">建立 <a href="https://mde.tw/cad2024/content/Quadruped.html">Dingo 機器狗</a>控制系統設計模擬場景</p>
 <p style="padding-left: 30px;"><a href="https://github.com/mdecycu/DingoQuadruped">https://github.com/mdecycu/DingoQuadruped</a></p>
@@ -448,7 +531,67 @@ openByGet();
 <p>建立模擬場景操作過程影片如下:</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="450" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/IpWeRGsTnvE" title="國立虎尾科技大學機械設計工程系 - 電腦輔助設計與實習 - w16_exam3: 41223234" width="800"></iframe></p>
 <p style="padding-left: 30px;">所完成的模擬場景與控制程式檔案下載</p>
-<p style="padding-left: 30px;"><span style="color: #0000ff;"><a href="/downloads/41223234_w16_exam3.7z" style="color: #0000ff;">41223234_w16_exam3.7z</a></span></p><h1>Final Report</h1>
+<p style="padding-left: 30px;"><span style="color: #0000ff;"><a href="/downloads/41223234_w16_exam3.7z" style="color: #0000ff;">41223234_w16_exam3.7z</a></span></p>
+<h1>pinball</h1>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="360" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/liICjBrnltk" title="國立虎尾科技大學機械設計工程系 - 電腦輔助設計與實習 - Pinball：41223234" width="640"></iframe></p>
+<p><a href="/downloads/彈射利刃.ttt">w15pinball.ttt</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"></pre>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># pip install pyzmq cbor keyboard
+from coppeliasim_zmqremoteapi_client import RemoteAPIClient
+import keyboard
+
+# Connecting to the CoppeliaSim server
+client = RemoteAPIClient('localhost', 23000)
+
+print('Program started')
+sim = client.getObject('sim')
+
+# Get the handle for the slider (prismatic joint)
+cw= sim.getObject('/cw_joint')
+ccw= sim.getObject('/ccw_joint')
+slider = sim.getObject('/kicker_joint')
+
+# Starting the simulation
+sim.startSimulation()
+print('Simulation started')
+
+# Main control loop
+def main():
+    # Keep running until simulation is stopped
+    while True:
+        if keyboard.is_pressed('p'):  # Move slider to -0.15 position
+            print("p is pressed")
+            sim.setJointTargetPosition(ccw, -0.5)
+        
+        if keyboard.is_pressed('l'):  # Reset slider to the original position
+            print("l is pressed")
+            sim.setJointTargetPosition(ccw, 0.0)  # Reset to the initial position
+            
+        if keyboard.is_pressed('w'):  # Move slider to -0.15 position
+            print("w is pressed")
+            sim.setJointTargetPosition(cw,0.5)
+        
+        if keyboard.is_pressed('s'):  # Reset slider to the original position
+            print("s is pressed")
+            sim.setJointTargetPosition(cw, 0.0)  # Reset to the initial position
+
+        if keyboard.is_pressed('j'):  # Move slider to -0.15 position
+            print("j is pressed")
+            sim.setJointTargetPosition(slider, -0.15)
+        
+        if keyboard.is_pressed('k'):  # Reset slider to the original position
+            print("k is pressed")
+            sim.setJointTargetPosition(slider, 0.0)  # Reset to the initial position
+            
+        if keyboard.is_pressed('t'):  # Stop the simulation when 'q' is pressed
+            print("t is pressed - stopping simulation")
+            sim.stopSimulation()
+            break
+
+# Start the main control loop
+main()
+</pre>
+<p></p><h1>Final Report</h1>
 <p>期末口頭與書面專題報告 (30%)</p>
 <p>期末口頭專題報告影片:</p>
 <p style="padding-left: 30px;">......</p>
